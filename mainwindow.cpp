@@ -30,19 +30,32 @@ void MainWindow::on_checkButton_clicked()
         protection_points += 1;
     }
 
-    bool isNumper = true;
+    bool contSpace = false;
+    int cntLetters = 0;
+    int cntDigits = 0;
+
     for (int i = 0; i < passtext.size(); ++i) {
-        if (!passtext[i].isDigit()) {
-            isNumper = false;
+        if (passtext[i].isLetter()) {
+            cntLetters += 1;
+        } else if (passtext[i].isDigit()) {
+            cntDigits += 1;
+        } else if (passtext[i].isSpace()) {
+            contSpace = true;
         }
+
     }
 
-    if (!isNumper) {
+    if (cntLetters == 0) {
         protection_points += 1;
     }
+    if (cntDigits < cntLetters && cntLetters - cntDigits >= 4) {
+        protection_points += 2;
+    }
 
 
-    if (protection_points < 2) {
+    if (contSpace) {
+        ui->resLabel->setText("Password must not contain spacees!");
+    } else if (protection_points < 2) {
         ui->resLabel->setText("Password is too weak!");
     } else if (protection_points >= 2 && protection_points < 4) {
         ui->resLabel->setText("Your password is not very hard!");

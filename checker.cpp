@@ -12,4 +12,10 @@ bool Checker::isSpecialSymbol(char c) {
     }
 }
 
+bool Checker::isPoints(char c) {
+    if (c=='.' or c==':' or c==';' or c==',') {
+        return true;
+    }
+}
+
 

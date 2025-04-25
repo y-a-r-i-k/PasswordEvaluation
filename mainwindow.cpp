@@ -48,9 +48,9 @@ void MainWindow::on_checkButton_clicked()
         } else if (passtext[i].isSpace()) {
             contSpace = true;
         } else if (ch.isPoints(passtext[i])) {
-            cntPoints += 0;
+            cntPoints += 1;
         } else if (ch.isSpecialSymbol(passtext[i])) {
-            cntSpecialSymbols += 0;
+            cntSpecialSymbols += 1;
         }
 
     }
